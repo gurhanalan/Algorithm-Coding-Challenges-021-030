@@ -145,3 +145,45 @@ function maxSubarraySum(arr, num) {
 
 // console.log(maxSubarraySum([100, 200, 300, 400], 2)); //700
 // console.log(maxSubarraySum([1, 4, 2, 10, 23, 3, 1, 0, 20], 4)); //39
+
+//////////////////////////////////////
+// 26. minSubArrayLen
+/* 
+Write a function called minSubArrayLen  which accepts two parameters - an array of positive integers and a positive integer. This function should return the minimal length of a contiguous  subarray of which the sum is greater than or equal to the integer passed to the function. If there isn't one, return 0 instead.
+Time Complexity - O(n)
+Space Complexity - O(1)
+
+minSubArrayLen([2,3,1,2,4,3],7)  // 2 -> because [4,3] is the smallest subarray
+minSubArrayLen([3,1,7,11,2,9,8,21,62,33,19],52)  // // 1 -> because [62] is greater than 52
+*/
+
+function minSubArrayLen(arr, num) {
+    let min = Infinity;
+    let total = 0;
+    let end = 0,
+        start = 0,
+        length = 1;
+    total += arr[start];
+    while (end < arr.length) {
+        if (total >= num && length < min) {
+            min = length;
+
+            if (min === 1) return min;
+        }
+
+        if (total >= num && start < end) {
+            total -= arr[start];
+            start++;
+            length--;
+        } else {
+            end++;
+            length++;
+            total += arr[end];
+        }
+    }
+    if (min == Infinity) return 0;
+    return min;
+}
+
+// console.log(minSubArrayLen([2, 3, 1, 2, 4, 3], 7));
+// console.log(minSubArrayLen([3, 1, 7, 11, 2, 9, 8, 21, 22, 33, 53], 52));
