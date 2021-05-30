@@ -187,3 +187,47 @@ function minSubArrayLen(arr, num) {
 
 // console.log(minSubArrayLen([2, 3, 1, 2, 4, 3], 7));
 // console.log(minSubArrayLen([3, 1, 7, 11, 2, 9, 8, 21, 22, 33, 53], 52));
+
+// 27. findLongestSubstring
+/* 
+Write a function called findLongestSubstring which accepts a string and returns the length of the longest substring with all distinct characters. Time complexity O(n).
+
+findLongestSubstring("rithmschool")  //7
+findLongestSubstring('longestsubstring') //8
+findLongestSubstring('bbbbbb')  // 1
+findLongestSubstring('thecatinthehat')  // 7
+*/
+
+function findLongestSubstring(str) {
+    const lookup = {};
+    let length = 0;
+    let longest = 0;
+    let lastDoubleIdx = -1;
+    for (let i = 0; i < str.length; i++) {
+        if (!(lookup[str[i]] || lookup[str[i]] === 0)) {
+            length++;
+            lookup[str[i]] = i + 1;
+        } else {
+            if (lastDoubleIdx < lookup[str[i]]) {
+                lastDoubleIdx = lookup[str[i]];
+                length = i - lastDoubleIdx;
+            }
+            lookup[str[i]] = i + 1;
+            length++;
+        }
+        if (length > longest) {
+            longest = length;
+        }
+        // console.log(str[i], length);
+        // console.log(lookup);
+    }
+    return longest;
+}
+
+// console.log(findLongestSubstring("rithmschool"));
+// console.log(findLongestSubstring("longestsubstring"));
+// console.log(findLongestSubstring("bbbbbb"));
+// console.log(findLongestSubstring("thecatinthehat"));
+// console.log(findLongestSubstring("thisishowwedoit"));
+// console.log(findLongestSubstring(""));
+// console.log(findLongestSubstring("abcd"));
