@@ -298,3 +298,26 @@ function findLongestSubs(str) {
 // console.log(
 //     findLongestSubs("1111aa994bbbb1111AAAAAFF????????????????????????????")
 // );
+
+////////////////////////////////////////
+// 29. Sum of prime-indexed elements
+/* you will be given an integer array and your task is to return the sum of elements occupying prime-numbered indices.
+
+The first element of the array is at index 0.
+
+Good luck! */
+
+function total(arr) {
+    const arrPrimes = [2];
+    let i = 2;
+    if (i > arr.length) return 0;
+    while (i < arr.length) {
+        if (arrPrimes.every((el) => i % el !== 0)) arrPrimes.push(i);
+
+        i++;
+    }
+    return arrPrimes.reduce((acc, el) => acc + arr[el], 0);
+}
+// console.log(total([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])); //47
+// console.log(total([1, 2, 3, 4])); // 7
+// console.log(total([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13])); //33
