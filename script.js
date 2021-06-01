@@ -321,3 +321,18 @@ function total(arr) {
 // console.log(total([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])); //47
 // console.log(total([1, 2, 3, 4])); // 7
 // console.log(total([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13])); //33
+
+// 30. Fib -recursion
+/* 
+Write a recursive function called fib  which accepts a number and returns the th number in the Fibonacci sequence. Recall that the Fibonacci sequence is the sequence of whole numbers 1, 1, 2, 3, 5, 8, ... which starts with 1 and 1, and where every number thereafter is equal to the sum of the previous two numbers. Solve it with recursion.
+// fib(4) // 3
+// fib(10) // 55
+// fib(28) // 317811
+// fib(35) // 9227465
+
+*/
+
+function fib(num) {
+    if (num <= 2) return 1;
+    return fib(num - 1) + fib(num - 2);
+}
